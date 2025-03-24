@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@using CekikilaWasm.Models
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,8 +12,22 @@
 @code {
     private int currentCount = 0;
 
+    private List<string>? users = null;
+
     private void IncrementCount()
     {
+        Objet objet = new() { Nom = "Taille haie" };
+        Reservation resa1 = new(
+            objet, "toto@titi.com", 
+            DateTime.Now, TimeSpan.FromDays(3)
+        );
+
+        Reservation resa2 = resa1 with {
+                Debut = DateTime.Now.AddDays(1)
+            };
+        
+        
+        users ??= new List<string>();
         currentCount++;
     }
 }
