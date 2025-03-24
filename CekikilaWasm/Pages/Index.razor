@@ -13,24 +13,27 @@
     <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img src="img/obj-1.jpg" class="card-img-top" />
+            @foreach (var obj in catalogue)
+            {
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="img/obj-@(obj.Id).jpg" class="card-img-top" />
 
-                    <div class="card-body">
-                        <h5 class="card-title">Broyeur de végétaux</h5>
-                        <p class="card-text">Broyeur électrique d'une puissance de 2800W et d'un diamètre de coupe maximum de 45 mm convient parfaitement à un usage régulier.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-primary">Réserver</button>
-                                <button type="button" class="btn btn-sm btn-secondary">Voir dispo</button>
+                        <div class="card-body">
+                            <h5 class="card-title">@obj.Nom</h5>
+                            <p class="card-text">@obj.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">Réserver</button>
+                                    <button type="button" class="btn btn-sm btn-secondary">Voir dispo</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
                             </div>
-                            <small class="text-muted">9 mins</small>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
+            }
+            <!-- div class="col">
                 <div class="card shadow-sm">
                     <img src="img/obj-4.jpg" class="card-img-top" />
 
@@ -80,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div-->
         </div>
     </div>
 </div>
@@ -88,7 +91,7 @@
 
 @code {
     private readonly Objet[] catalogue = {
-        new() { Id=1, Nom="Broyeur de végétaux"      , Description = "Broyeur électrique d'une puissance de 2800W et d'un diamètre de coupe maximum de 45 mm convient parfaitement à un usage régulier." },
+        new() { Id=1, Nom="Broyeur de végétaux"      , Description = "Broyeur <strong>électrique</strong> d'une puissance de 2800W et d'un diamètre de coupe maximum de 45 mm convient parfaitement à un usage régulier." },
         new() { Id=4, Nom="Paddle gonflable"         , Description = "Idéal pour amener partout avec soit, les planches de paddle gonflable vous surprendront par leur rigidité une fois gonflée et leur compacité dans leur sac de rangement." },
         new() { Id=3, Nom="Taille haies électrique"  , Description = "Taille haies filaire idéal pour tailler de grandes haies avec facilité et en silence." },
         new() { Id=6, Nom="Combinaison néoprenne T40", Description = "Cette combinaison vous permettra de nager toute l'année ! Conçue en néoprène spécial pour plus de résistance pour l'enfilage et une glisse idéale !" }
