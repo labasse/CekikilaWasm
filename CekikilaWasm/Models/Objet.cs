@@ -2,9 +2,11 @@
 {
     public class Objet
     {
-        public required string Nom { 
-            get;
-            set;
+        public int Id { get; init; }
+        public required string Nom { get; set; }
+        public string? Description
+        {
+            get; init;
         }
     }
     public record Reservation(
