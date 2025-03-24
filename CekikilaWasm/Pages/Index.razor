@@ -1,6 +1,8 @@
 ﻿@page "/"
 @using CekikilaWasm.Models
 
+@inject DataService data
+
 <section class="px-2 py-5 text-center container-fluid">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -13,14 +15,14 @@
     <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            @foreach (var obj in catalogue)
+            @foreach (var obj in data.AllItems)
             {
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="img/obj-@(obj.Id).jpg" class="card-img-top" />
 
                         <div class="card-body">
-                            <h5 class="card-title">@obj.Nom</h5>
+                            <h5 class="card-title">@obj.Name</h5>
                             <p class="card-text">@obj.Description</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -90,11 +92,5 @@
 
 
 @code {
-    private readonly Objet[] catalogue = {
-        new() { Id=1, Nom="Broyeur de végétaux"      , Description = "Broyeur <strong>électrique</strong> d'une puissance de 2800W et d'un diamètre de coupe maximum de 45 mm convient parfaitement à un usage régulier." },
-        new() { Id=4, Nom="Paddle gonflable"         , Description = "Idéal pour amener partout avec soit, les planches de paddle gonflable vous surprendront par leur rigidité une fois gonflée et leur compacité dans leur sac de rangement." },
-        new() { Id=3, Nom="Taille haies électrique"  , Description = "Taille haies filaire idéal pour tailler de grandes haies avec facilité et en silence." },
-        new() { Id=6, Nom="Combinaison néoprenne T40", Description = "Cette combinaison vous permettra de nager toute l'année ! Conçue en néoprène spécial pour plus de résistance pour l'enfilage et une glisse idéale !" }
-    };
-
+    
 }
