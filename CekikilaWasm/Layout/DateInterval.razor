@@ -1,6 +1,6 @@
 ﻿<div class="row align-items-center">
     <label for="start" class="col-form-label col-auto">Du</label>
-    <div class="col-auto"><input id="start" type="date" class="form-control" @bind=InternalStart/></div>
+    <div class="col-auto"><input @ref="_startElement" id="start" type="date" class="form-control" @bind=InternalStart/></div>
     <label for="end" class="col-form-label col-auto">au</label>
     <div class="col-auto"><input id="end" type="date" class="form-control" @bind=InternalEnd/></div>
 </div>
@@ -27,6 +27,9 @@
     }
     public int Duree => End.DayNumber - Start.DayNumber;
 
+    private ElementReference _startElement;
+
+    #region Paramaters
     [Parameter]
     public TimeSpan MinDuration { get; set; } = TimeSpan.FromDays(1);
 
@@ -41,5 +44,14 @@
 
     [Parameter] // Obligatoire pour le binding
     public EventCallback<DateOnly> EndChanged { get; set; }
+    #endregion
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _startElement.FocusAsync();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
 }
