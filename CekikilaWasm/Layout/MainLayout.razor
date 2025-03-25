@@ -1,8 +1,9 @@
 ﻿@inherits LayoutComponentBase
+<CascadingValue Name="Language" Value="@_lang">
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#"><strong>CeKiKiLa</strong></a>
+            <a class="navbar-brand" href="#"><strong>CeKiKiLa</strong> (@_lang)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,3 +29,16 @@
         <p class="mb-1">Site de partage de matériel pour les collaborateurs de l'entreprise.</p>
     </div>
 </footer>
+</CascadingValue>
+
+@code
+{
+    private string _lang = "fr";
+
+    [SupplyParameterFromQuery(Name = "lang")]
+    public string? Lang 
+    {
+        get => _lang; 
+        set => _lang = value ?? "fr";
+    }
+}

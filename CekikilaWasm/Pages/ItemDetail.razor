@@ -10,7 +10,7 @@
 }
 else
 {
-    <PageTitle>@item.Name</PageTitle>
+    <PageTitle>@item.Name (@Lang)</PageTitle>
     <div class="album py-5 bg-light">
         <div class="container">
             <h1>@item.Name</h1>
@@ -42,6 +42,9 @@ else
         get => _displayAvailability ? "1":String.Empty;
         set => _displayAvailability = value is not null; 
     }
+
+    [CascadingParameter(Name = "Language")]
+    public required string Lang { get; set; }
 
     private bool _displayAvailability = false; 
 
