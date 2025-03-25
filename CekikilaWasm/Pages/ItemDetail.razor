@@ -1,0 +1,49 @@
+﻿@page "/item/{Id:int}"
+@using CekikilaWasm.Models
+
+@inject DataService data
+@inject NavigationManager nav
+
+@if (item == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <PageTitle>@item.Name</PageTitle>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h1>@item.Name</h1>
+            <p>@item.Description</p>
+            @if (_displayAvailability)
+            {
+                <p>Dispos : ...</p>
+            }
+        </div>
+    </div>
+}
+@code {
+    [Parameter]
+    public int Id 
+    { 
+        get => item?.Id ?? -1;
+        set
+        {
+            item = data.AllItems.FirstOrDefault(item => item.Id == value);
+            if(item == null)
+            {
+                nav.NavigateTo("/404");
+            }
+        }
+    }
+
+    [SupplyParameterFromQuery(Name = "av")]
+    public string? DisplayAvailability { 
+        get => _displayAvailability ? "1":String.Empty;
+        set => _displayAvailability = value is not null; 
+    }
+
+    private bool _displayAvailability = false; 
+
+    private Item? item;
+}
