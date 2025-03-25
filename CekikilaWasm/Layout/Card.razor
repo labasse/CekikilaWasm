@@ -1,4 +1,4 @@
-﻿<div class="card shadow-sm @AdditionalClass" @attributes=Attr >
+﻿<div class="card shadow-sm @AdditionalClass" @attributes=Attributes >
     @if (Image != null)
     {
         <img src="@Image" class="card-img-top" />
@@ -31,7 +31,7 @@
         [Parameter(CaptureUnmatchedValues = true)]
         public Dictionary<string, object> Attr { get; set; } = new Dictionary<string, object>();
 
-        // TODO : End this : private IDictionary<string, object> Attributes => Attr.;
+        private IDictionary<string, object> Attributes => Attr.Where(pair => pair.Key!="class").ToDictionary();
 
         private string AdditionalClass 
         {
