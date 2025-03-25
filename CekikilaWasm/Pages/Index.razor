@@ -18,7 +18,21 @@
             @foreach (var obj in data.AllItems)
             {
                 <div class="col">
-                    <div class="card shadow-sm" @onmouseover="e => UpdateTeaser(obj)" @onmouseleave=ResetTeaser>
+                    <Card 
+                        Image=@string.Format("img/obj-{0}.jpg", obj.Id) 
+                        Title=@obj.Name
+                        style="border:1px solid #000"
+                        class="exemple">
+                        <Description>@obj.Description</Description>
+                        <Footer>
+                            <div class="btn-group">
+                                <a href="item/@obj.Id" class="btn btn-sm btn-primary">Réserver</a>
+                                <button type="button" class="btn btn-sm btn-secondary">Voir dispo</button>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </Footer>
+                    </Card>
+                    <!--div class="card shadow-sm" @onmouseover="e => UpdateTeaser(obj)" @onmouseleave=ResetTeaser>
                         <img src="img/obj-@(obj.Id).jpg" class="card-img-top" />
 
                         <div class="card-body">
@@ -32,7 +46,7 @@
                                 <small class="text-muted">9 mins</small>
                             </div>
                         </div>
-                    </div>
+                    </div-->
                 </div>
             }
             <!-- div class="col">
