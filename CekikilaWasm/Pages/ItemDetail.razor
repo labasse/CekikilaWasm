@@ -1,7 +1,8 @@
-﻿@page "/item/{Id:int}"
+﻿@page "/item/{Id:int=1}"
 @using CekikilaWasm.Models
 
 @inject DataService data
+@inject ILogger<ItemDetail> log
 @inject NavigationManager nav
 
 @if (item == null)
@@ -32,7 +33,12 @@ else
             item = data.AllItems.FirstOrDefault(item => item.Id == value);
             if(item == null)
             {
+                log.LogWarning($"Unknown object {value}");
                 nav.NavigateTo("/404");
+            }
+            else
+            {
+                log.LogInformation($"Found {value}");
             }
         }
     }
