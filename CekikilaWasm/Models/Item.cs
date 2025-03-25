@@ -8,5 +8,7 @@
         {
             get; init;
         }
+
+        public required string[] Tags;
     }
 }
